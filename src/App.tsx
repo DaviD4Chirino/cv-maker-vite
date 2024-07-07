@@ -1,22 +1,21 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import "./App.css";
 import { DataContext } from "./contexts/dataContext";
 import { updateObject } from "./Utils/Utils";
+import { Button, Step, StepLabel, Stepper } from "@mui/material";
+import Assert from "./components/Assert";
+import FormPage from "./modules/formPage";
 
 function App() {
-  const { data, setData } = useContext(DataContext);
+  const { data, setData, getFullName } = useContext(DataContext);
+  const [activeStep, setActiveStep] = useState(0);
+
+  const steps = Object.keys(data);
 
   return (
-    <div className="">
-      {data.personal_information.full_name}
-      <button
-        onClick={() =>
-          setData(updateObject(data, "personal_information.full_name", "deus"))
-        }
-      >
-        Click Me
-      </button>
-    </div>
+    <section id="Main" className="w-full h-[100vh] grid grid-cols-2">
+      <FormPage steps={steps} />
+    </section>
   );
 }
 

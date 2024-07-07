@@ -1,7 +1,15 @@
+/**
+ *  It creates an object, even with nested values, use like:
+ * @example updateObject(data, "personal_information.full_name", "deus")
+ * @param originalObject object
+ * @param keyToUpdate string
+ * @param valueToUpdate any
+ * @returns any
+ */
 export function updateObject(
   originalObject: object,
   keyToUpdate: string,
-  valueToUpdate: unknown
+  valueToUpdate: any
 ): any {
   if (!originalObject) {
     return originalObject;
@@ -27,24 +35,3 @@ export function updateObject(
     [updatedKey]: valueToUpdate,
   };
 }
-// function updateObject(obj, key, value) {
-//   if (!obj) {
-//     return obj;
-//   }
-
-//   const keys = key.split(".");
-//   const updatedKey = keys[0];
-//   const restOfKey = keys.slice(1).join(".");
-
-//   if (keys.length > 1) {
-//     return {
-//       ...obj,
-//       [updatedKey]: updateObject(obj[updatedKey], restOfKey, value),
-//     };
-//   }
-
-//   return {
-//     ...obj,
-//     [updatedKey]: value,
-//   };
-// }
