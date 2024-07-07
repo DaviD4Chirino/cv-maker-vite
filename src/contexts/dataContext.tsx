@@ -29,6 +29,14 @@ const DataContext: React.Context<DataContext> = createContext(initialValue);
 
 function DataProvider({ children }: { children: ReactNode }) {
   const [data, setData] = useState<DataObject>(initialValue.data);
+  //   function changeDataProperty() {
+  //   return {
+  //     ...data,
+  //     personal_information: {
+  //       ...data.personal_information,
+  //       full_name: "asdasd",
+  //     },
+  //   };
 
   const newValue = {
     data,

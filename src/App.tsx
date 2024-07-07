@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import "./App.css";
 import { DataContext } from "./contexts/dataContext";
+import { updateObject } from "./Utils/Utils";
 
 function App() {
   const { data, setData } = useContext(DataContext);
@@ -10,13 +11,7 @@ function App() {
       {data.personal_information.full_name}
       <button
         onClick={() =>
-          setData({
-            ...data,
-            personal_information: {
-              ...data.personal_information,
-              full_name: "asdasd",
-            },
-          })
+          setData(updateObject(data, "personal_information.full_name", "deus"))
         }
       >
         Click Me
