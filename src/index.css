@@ -9,7 +9,7 @@
   box-sizing: border-box;
 }
 :root {
-  background: theme("colors.background");
+  background: black;
   color: theme("colors.text");
 }
 
