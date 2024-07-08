@@ -1,6 +1,6 @@
 "use client";
 import { Button, TextField } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { DataContext } from "../../contexts/dataContext";
 import { updateObject } from "../../Utils/Utils";
 import { TemplateContext } from "../../contexts/templateContext";
@@ -10,6 +10,17 @@ export default function ProfileForm() {
   const { setSelectedTemplate } = useContext(TemplateContext);
 
   const personal_info = data.personal_information;
+
+  useEffect(
+    () => {
+      console.log(data);
+
+      return () => {};
+    },
+    //eslint-disable-next-line
+    []
+  );
+
   function handleFileChange(event: any) {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -46,8 +57,8 @@ export default function ProfileForm() {
       <div className="flex flex-grow">
         <TextField
           fullWidth
-          id="first-name"
-          name="first-name"
+          id="first_name"
+          name="first_name"
           label="First Name"
           variant="standard"
           defaultValue={personal_info.first_name}
@@ -56,19 +67,21 @@ export default function ProfileForm() {
         />
         <TextField
           fullWidth
-          id="second-name"
-          name="second-name"
+          id="second_name"
+          name="second_name"
           label="Second Name"
           variant="standard"
+          defaultValue={personal_info.second_name}
           placeholder="Genaro"
           onChange={handleTextReplacement}
         />
         <TextField
           fullWidth
-          id="middle-name"
-          name="middle-name"
+          id="middle_name"
+          name="middle_name"
           label="Middle Name"
           variant="standard"
+          defaultValue={personal_info.middle_name}
           placeholder="Chirino"
           onChange={handleTextReplacement}
         />
@@ -78,6 +91,7 @@ export default function ProfileForm() {
           name="surname"
           label="Surname"
           variant="standard"
+          defaultValue={personal_info.surname}
           placeholder="Chirinos"
           onChange={handleTextReplacement}
         />

@@ -23,6 +23,7 @@ const initialValue: DataContext = {
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setData: (data: DataObject) => {},
+  resetValues: () => {},
 };
 const DataContext: React.Context<DataContext> = createContext(initialValue);
 
@@ -43,6 +44,7 @@ function DataProvider({ children }: { children: ReactNode }) {
   const newValue = {
     data,
     setData,
+    resetValues: () => setData(initialValue.data),
   };
 
   return (

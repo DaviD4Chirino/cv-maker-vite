@@ -1,6 +1,8 @@
 interface DataContext {
   data: DataObject;
   setData: React.Dispatch<React.SetStateAction<DataObject>>;
+  /** returns the dataObject to the default value */
+  resetValues: () => void;
 }
 
 type DataObject = {

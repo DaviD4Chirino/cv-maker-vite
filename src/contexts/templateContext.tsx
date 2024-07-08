@@ -1,5 +1,6 @@
 "use client";
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useContext } from "react";
+import { DataContext } from "./dataContext";
 
 const initialValue: TemplateState = {
   id: 0,
@@ -26,15 +27,30 @@ function TemplateStateProvider({ children }: { children: any }) {
   );
   const [changes, setChanges] = useState<Change[]>(initialValue.changes);
 
+  const { data, resetValues } = useContext(DataContext);
+
+  useEffect(
+    () => {
+      // console.log(data);
+
+      return () => {};
+    },
+    //eslint-disable-next-line
+    [data]
+  );
+
   useEffect(() => {
+    resetValues();
     setCurrentTemplate(selectedTemplate);
     return () => {};
+    //eslint-disable-next-line
   }, [selectedTemplate]);
 
   useEffect(() => {
-    console.log(changes);
+    // console.log(changes);
     updateCurrentTemplateChanges();
     return () => {};
+    //eslint-disable-next-line
   }, [changes]);
 
   function updateCurrentTemplateChanges() {
