@@ -1,21 +1,40 @@
 "use client";
 import { Button, TextField } from "@mui/material";
 import React, { useContext } from "react";
-
-// import fs from "fs";
+import { DataContext } from "../../contexts/dataContext";
+import { updateObject } from "../../Utils/Utils";
+import { TemplateContext } from "../../contexts/templateContext";
 
 export default function ProfileForm() {
-  function handleFileChange(event: any) {}
-  // (e) =>
+  const { data, setData } = useContext(DataContext);
+  const { setSelectedTemplate } = useContext(TemplateContext);
 
-  // 	});
+  const personal_info = data.personal_information;
+  function handleFileChange(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setSelectedTemplate(event.target?.result as string);
+    };
+
+    reader.readAsText(file);
+  }
+
   function handleTextReplacement(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {}
+  ) {
+    setData(
+      updateObject(
+        data,
+        `personal_information.${e.target.name}`,
+        e.target.value
+      )
+    );
+  }
 
   return (
     <section id="ProfileForm" className="grid gap-5">
-      <Button component="label" variant="contained" className="max-w-[200px]">
+      <Button component="label" variant="contained" className="w-[100%]">
         upload a file
         <input
           type="file"
@@ -24,7 +43,6 @@ export default function ProfileForm() {
           onChange={handleFileChange}
         />
       </Button>
-
       <div className="flex flex-grow">
         <TextField
           fullWidth
@@ -32,6 +50,7 @@ export default function ProfileForm() {
           name="first-name"
           label="First Name"
           variant="standard"
+          defaultValue={personal_info.first_name}
           placeholder="David "
           onChange={handleTextReplacement}
         />
@@ -63,16 +82,6 @@ export default function ProfileForm() {
           onChange={handleTextReplacement}
         />
       </div>
-
-      <TextField
-        id="phone-number"
-        name="phone-number"
-        label="Phone Number"
-        variant="standard"
-        placeholder="+12 345 678 9101"
-        onChange={handleTextReplacement}
-      />
-
       <TextField
         id="email"
         name="email"
@@ -82,7 +91,14 @@ export default function ProfileForm() {
         placeholder="thisis@anexample.com"
         onChange={handleTextReplacement}
       />
-
+      <TextField
+        id="phone_number"
+        name="phone_number"
+        label="Phone Number"
+        variant="standard"
+        placeholder="+12 345 678 9101"
+        onChange={handleTextReplacement}
+      />
       <TextField
         id="location"
         name="location"
@@ -91,10 +107,9 @@ export default function ProfileForm() {
         placeholder="Coro, Falcón"
         onChange={handleTextReplacement}
       />
-
       <TextField
-        id="portfolio-link"
-        name="portfolio-link"
+        id="portfolio_link"
+        name="portfolio_link"
         label="Link"
         variant="standard"
         placeholder="www.portfolio.com"

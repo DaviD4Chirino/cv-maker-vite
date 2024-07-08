@@ -1,8 +1,7 @@
-import { ReactNode, createContext, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from "react";
 const initialValue: DataContext = {
   data: {
     personal_information: {
-      full_name: "",
       first_name: "",
       second_name: "",
       middle_name: "",
@@ -24,21 +23,26 @@ const initialValue: DataContext = {
   },
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setData: (data: DataObject) => {},
-  getFullName: () => "",
 };
 const DataContext: React.Context<DataContext> = createContext(initialValue);
 
 function DataProvider({ children }: { children: ReactNode }) {
-  const [data, setData] = useState<DataObject>(initialValue.data);
+  const [data, setData] = useState<DataObject>(
+    JSON.parse(localStorage.getItem("data")) || initialValue.data
+  );
+
+  useEffect(
+    () => {
+      localStorage.setItem("data", JSON.stringify(data));
+      return () => {};
+    },
+    //eslint-disable-next-line
+    [data]
+  );
 
   const newValue = {
     data,
     setData,
-    getFullName: () =>
-      getFullName(
-        data.personal_information.full_name,
-        data.personal_information
-      ),
   };
 
   return (

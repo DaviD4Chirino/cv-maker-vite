@@ -1,12 +1,10 @@
 interface DataContext {
   data: DataObject;
   setData: React.Dispatch<React.SetStateAction<DataObject>>;
-  getFullName: () => string;
 }
 
 type DataObject = {
   personal_information: {
-    full_name: string;
     first_name: string;
     second_name: string;
     middle_name: string;

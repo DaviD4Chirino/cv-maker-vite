@@ -7,8 +7,7 @@ import Assert from "./components/Assert";
 import FormPage from "./modules/formPage";
 
 function App() {
-  const { data, setData, getFullName } = useContext(DataContext);
-  const [activeStep, setActiveStep] = useState(0);
+  const { data } = useContext(DataContext);
 
   const steps = Object.keys(data);
 
