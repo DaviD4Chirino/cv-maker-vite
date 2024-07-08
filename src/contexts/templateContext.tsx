@@ -4,15 +4,9 @@ import { DataContext } from "./dataContext";
 
 const initialValue: TemplateState = {
   id: 0,
-  // originalTemplate: "",
-  // setOriginalTemplate: (text: string) => {},
   selectedTemplate: "",
   setSelectedTemplate: (new_template: string) => {},
   currentTemplate: "",
-  // setSelectedTemplate: (newTemplate: Template) => {},
-  changes: [],
-  // setChanges: (newChanges: Change[]) => {},
-  addChange: (change: Change) => {},
 };
 
 const TemplateContext: React.Context<TemplateState> =
@@ -25,14 +19,39 @@ function TemplateStateProvider({ children }: { children: any }) {
   const [currentTemplate, setCurrentTemplate] = useState(
     initialValue.currentTemplate
   );
-  const [changes, setChanges] = useState<Change[]>(initialValue.changes);
 
   const { data, resetValues } = useContext(DataContext);
 
+  function applyChanges() {
+    if (!currentTemplate || !selectedTemplate) return;
+    let changes = selectedTemplate;
+
+    for (const sectionName in data) {
+      const section = data[sectionName];
+      // if (section["heading"]) continue;
+      // console.log(section);
+
+      for (const content in section.contents) {
+        const element = section.contents[content];
+
+        // console.log(content, sectionName);
+        if (element) {
+          const regex = new RegExp(
+            `(?<openTag><.*class=["'\`].*${content}.*["'\`]>)\\s*(?<content>.*)\\s*(?<closedTag><\\/.*>)`,
+            "g"
+          );
+
+          changes = changes.replace(regex, `$1${element}$3`);
+        }
+      }
+
+      setCurrentTemplate(changes);
+    }
+  }
+
   useEffect(
     () => {
-      // console.log(data);
-
+      applyChanges();
       return () => {};
     },
     //eslint-disable-next-line
@@ -47,51 +66,16 @@ function TemplateStateProvider({ children }: { children: any }) {
   }, [selectedTemplate]);
 
   useEffect(() => {
-    // console.log(changes);
-    updateCurrentTemplateChanges();
+    applyChanges();
     return () => {};
     //eslint-disable-next-line
-  }, [changes]);
-
-  function updateCurrentTemplateChanges() {
-    let newText = selectedTemplate;
-    for (const change of changes) {
-      newText = newText.replace(change.replace, change.replacement);
-    }
-    setCurrentTemplate(newText);
-  }
-
-  function addChange(change: Change) {
-    const exist: number = changes.findIndex(
-      (value: Change) => value.owner == change.owner
-    );
-    if (exist != -1) {
-      const modifiedChanges: Change[] = changes;
-      modifiedChanges[exist] = change;
-      setChanges(modifiedChanges);
-    } else {
-      setChanges([...changes, change]);
-    }
-
-    updateCurrentTemplateChanges();
-  }
+  }, [currentTemplate]);
 
   const newValue = {
     id: 0,
     selectedTemplate,
     setSelectedTemplate,
     currentTemplate,
-    changes,
-    addChange,
-    // 	originalTemplate,
-    // 	setOriginalTemplate,
-    // 	currentTemplate,
-    // 	setCurrentTemplate,
-    // 	selectedTemplate,
-    // 	setSelectedTemplate,
-    // 	changes,
-    // 	setChanges,
-    // 	addChange,
   };
 
   return (

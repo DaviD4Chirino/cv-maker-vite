@@ -2,14 +2,17 @@ import { ReactNode, createContext, useEffect, useState } from "react";
 const initialValue: DataContext = {
   data: {
     personal_information: {
-      first_name: "",
-      second_name: "",
-      middle_name: "",
-      surname: "",
-      email: "",
-      phone_number: "",
-      location: "",
-      portfolio_link: "",
+      heading: "",
+      contents: {
+        first_name: "",
+        second_name: "",
+        middle_name: "",
+        surname: "",
+        email: "",
+        phone_number: "",
+        location: "",
+        portfolio_link: "",
+      },
     },
     educational_backgrounds: {
       heading: "",
@@ -50,15 +53,6 @@ function DataProvider({ children }: { children: ReactNode }) {
   return (
     <DataContext.Provider value={newValue}>{children}</DataContext.Provider>
   );
-}
-
-function getFullName(
-  full_name: string,
-  personal_information: DataObject["personal_information"]
-): string {
-  return full_name
-    ? full_name
-    : `${personal_information.first_name} ${personal_information.second_name} ${personal_information.middle_name} ${personal_information.surname}`;
 }
 
 export { DataContext, DataProvider };

@@ -4,9 +4,6 @@ interface TemplateState {
   setSelectedTemplate: (new_template: string) => void;
   /** The template with changes */
   currentTemplate: string;
-
-  changes: Change[];
-  addChange: (change: Change) => void;
 }
 
 type Change = {

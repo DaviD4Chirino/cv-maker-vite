@@ -7,14 +7,17 @@ interface DataContext {
 
 type DataObject = {
   personal_information: {
-    first_name: string;
-    second_name: string;
-    middle_name: string;
-    surname: string;
-    email: string;
-    phone_number: string;
-    location: string;
-    portfolio_link: string;
+    heading: "";
+    contents: {
+      first_name: string;
+      second_name: string;
+      middle_name: string;
+      surname: string;
+      email: string;
+      phone_number: string;
+      location: string;
+      portfolio_link: string;
+    };
   };
   educational_backgrounds: {
     heading: string;

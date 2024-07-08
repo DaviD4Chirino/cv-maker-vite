@@ -9,7 +9,7 @@ export default function ProfileForm() {
   const { data, setData } = useContext(DataContext);
   const { setSelectedTemplate } = useContext(TemplateContext);
 
-  const personal_info = data.personal_information;
+  const personal_info = data.personal_information.contents;
 
   useEffect(
     () => {
@@ -37,7 +37,7 @@ export default function ProfileForm() {
     setData(
       updateObject(
         data,
-        `personal_information.${e.target.name}`,
+        `personal_information.contents.${e.target.name}`,
         e.target.value
       )
     );
