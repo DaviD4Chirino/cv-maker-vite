@@ -30,7 +30,7 @@ function TemplateStateProvider({ children }: { children: any }) {
       const section = data[sectionName];
       // if (section["heading"]) continue;
       // console.log(section);
-
+      //NOTE: apart form personal_information, the rest are arrays
       for (const content in section.contents) {
         const element = section.contents[content];
 

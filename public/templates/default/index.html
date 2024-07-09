@@ -14,7 +14,9 @@
 		}
 
 		html {
-			height: 100%;
+			/* width: 420mm; */
+			/* height: 594mm; */
+
 		}
 
 		body {
@@ -83,6 +85,13 @@
 				display: inline-block;
 				margin-right: 10px;
 				text-decoration: underline;
+			}
+		}
+
+		ul,
+		ol {
+			:not(li) {
+				margin-left: -15px;
 			}
 		}
 
@@ -189,72 +198,79 @@
 				<span class="phone_number">111-222-3333</span>
 			</div>
 
-			<div class="about">
-				<span class="position">Front-End Developer </span>
-				<span class="desc">
-					I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm
-					motivated, result-focused and seeking a successful team-oriented company with opportunity to grow.
-				</span>
-			</div>
+
+			<!-- <div class="about"> -->
+			<!-- <span class="position">Front-End Developer </span> -->
+			<!-- <span class="desc"> -->
+			<!-- I am a front-end developer with more than 3 years of experience writing html, css, and js. I'm -->
+			<!-- motivated, result-focused and seeking a successful team-oriented company with opportunity to grow. -->
+			<!-- </span> -->
+			<!-- </div> -->
 		</div>
 		<div class="details">
-			<div class="section">
-				<div class="section__title">Experience</div>
+			<section class="section " id="work_experiences">
+				<p class="section__title heading">Experience</p>
 				<div class="section__list">
-					<div class="section__list-item">
-						<div class="left">
-							<div class="name">KlowdBox</div>
-							<div class="addr">San Fr, CA</div>
-							<div class="duration">Jan 2011 - Feb 2015</div>
+					<div class="section__list-item contents">
+						<div class="left ">
+							<div class="name company_name">KlowdBox</div>
+							<div class="addr job_location">San Fr, CA</div>
+							<span class="start_date duration">Jan 2011</span>
+							-
+							<span class="end_date duration">Feb 2015</span>
+							<!-- <div class="duration">Jan 2011 - Feb 2015</div> -->
 						</div>
-						<div class="right">
-							<div class="name">Fr developer</div>
-							<div class="desc">did This and that</div>
-						</div>
+						<ul class="right">
+							<p class="name job_title">Master chef</p>
+							<li class="desc job_responsibilities">did This and that</li>
+						</ul>
 					</div>
-					<div class="section__list-item">
-						<div class="left">
-							<div class="name">Akount</div>
-							<div class="addr">San Monica, CA</div>
-							<div class="duration">Jan 2011 - Feb 2015</div>
-						</div>
-						<div class="right">
-							<div class="name">Fr developer</div>
-							<div class="desc">did This and that</div>
-						</div>
-					</div>
+					<!-- <div class="section__list-item"> -->
+					<!-- <div class="left"> -->
+					<!-- <div class="name">Akount</div> -->
+					<!-- <div class="addr">San Monica, CA</div> -->
+					<!-- <div class="duration">Jan 2011 - Feb 2015</div> -->
+					<!-- </div> -->
+					<!-- <div class="right"> -->
+					<!-- <div class="name">Fr developer</div> -->
+					<!-- <div class="desc">did This and that</div> -->
+					<!-- </div> -->
+					<!-- </div> -->
 
 				</div>
-			</div>
-			<div class="section">
+			</section>
+			<section class="section" id="work_experiences">
 				<div class="section__title">Education</div>
 				<div class="section__list">
-					<div class="section__list-item">
+					<div class="section__list-item contents">
 						<div class="left">
-							<div class="name">Sample Institute of technology</div>
-							<div class="addr">San Fr, CA</div>
-							<div class="duration">Jan 2011 - Feb 2015</div>
+							<div class="name company_name">Sample Institute of technology</div>
+							<div class="addr job_location">San Fr, CA</div>
+							<div class="duration">
+								<span class="start_date">Jan 2011</span> -
+								<span class="end_date">Feb 2015</span>
+							</div>
 						</div>
 						<div class="right">
 							<div class="name">Fr developer</div>
 							<div class="desc">did This and that</div>
 						</div>
 					</div>
-					<div class="section__list-item">
-						<div class="left">
-							<div class="name">Akount</div>
-							<div class="addr">San Monica, CA</div>
-							<div class="duration">Jan 2011 - Feb 2015</div>
-						</div>
-						<div class="right">
-							<div class="name">Fr developer</div>
-							<div class="desc">did This and that</div>
-						</div>
-					</div>
+					<!-- <div class="section__list-item"> -->
+					<!-- <div class="left"> -->
+					<!-- <div class="name">Akount</div> -->
+					<!-- <div class="addr">San Monica, CA</div> -->
+					<!-- <div class="duration">Jan 2011 - Feb 2015</div> -->
+					<!-- </div> -->
+					<!-- <div class="right"> -->
+					<!-- <div class="name">Fr developer</div> -->
+					<!-- <div class="desc">did This and that</div> -->
+					<!-- </div> -->
+					<!-- </div> -->
 
 				</div>
 
-			</div>
+			</section>
 			<div class="section">
 				<div class="section__title">Projects</div>
 				<div class="section__list">
