@@ -1,6 +1,7 @@
 "use client";
 import React, { createContext, useEffect, useState, useContext } from "react";
 import { DataContext } from "./dataContext";
+import { htmlTagRegExp } from "../Utils/Utils";
 
 const initialValue: TemplateState = {
   id: 0,
@@ -36,10 +37,7 @@ function TemplateStateProvider({ children }: { children: any }) {
 
         // console.log(content, sectionName);
         if (element) {
-          const regex = new RegExp(
-            `(?<openTag><.*class=["'\`].*${content}.*["'\`]>)\\s*(?<content>.*)\\s*(?<closedTag><\\/.*>)`,
-            "g"
-          );
+          const regex: RegExp = htmlTagRegExp(content);
 
           changes = changes.replace(regex, `$1${element}$3`);
         }
